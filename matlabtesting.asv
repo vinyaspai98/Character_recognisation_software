@@ -1,0 +1,15 @@
+rootFolder = 'G:\New folder';
+%imds_test = imageDatastore(rootFolder, ...
+ %   'LabelSource', 'foldernames');
+l=dir('G:\New folder');
+for kk=3:length(l),
+    fullimage=strcat(l(kk).folder,'\',l(kk).name);
+    imds_test=imread(fullimage);
+    inputSize1 = [32 32];
+    imds_test.ReadFcn = @(imds_test)imresize(imread(imds_test),inputSize1);
+    labels = classify(net, imds_test);
+    ii = randi(1);
+    im = imread(imds_test.Files{ii});
+    imshow(im);
+    list.append(labels(ii));
+end
