@@ -1,1 +1,1 @@
-# vinyas.github.io
+# Character recognisation software using MATLAB
